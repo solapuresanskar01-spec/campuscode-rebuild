@@ -101,6 +101,7 @@ loginForm.addEventListener("submit", (event) => {
   captchaInput.value = "";
   generateCaptcha();
   showFormMessage("Demo complete. No credentials were sent or saved; authentication is not connected.", "success");
+  window.location.href = "dashboard.html";
 });
 
 document.querySelector("#forgot-password").addEventListener("click", (event) => {
