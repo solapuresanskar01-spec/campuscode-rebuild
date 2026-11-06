@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f4">
+    <meta name="description" content="CampusCode student dashboard for events, hackathons and your team.">
+    <title>Student Dashboard — CampusCode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="dashboard.js" defer></script>
+  </head>
+  <body class="dashboard-page">
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar" id="dashboard-sidebar" aria-label="Student workspace navigation">
+        <a class="dashboard-brand" href="index.html" aria-label="CampusCode home">
+          <img src="assets/campuscode-logo.png" alt="" width="42" height="36">
+          <span><strong>CAMPUSCODE</strong><small>HACKATHON ARENA</small></span>
+        </a>
+
+        <div class="sidebar-section-label">WORKSPACE</div>
+        <nav class="workspace-nav" aria-label="Workspace">
+          <button class="workspace-link" type="button" data-view="overview"><span class="nav-icon" aria-hidden="true">⌂</span><span>Overview</span></button>
+          <button class="workspace-link is-active" type="button" data-view="events" aria-current="page"><span class="nav-icon" aria-hidden="true">♜</span><span>Events</span><span class="nav-arrow" aria-hidden="true">→</span></button>
+          <button class="workspace-link" type="button" data-view="my-events"><span class="nav-icon" aria-hidden="true">◷</span><span>My Events</span></button>
+          <button class="workspace-link" type="button" data-tool="HackMate AI"><span class="nav-icon" aria-hidden="true">✣</span><span>HackMate AI</span></button>
+          <button class="workspace-link" type="button" data-tool="IdeaCheck AI"><span class="nav-icon" aria-hidden="true">✳</span><span>IdeaCheck AI</span></button>
+          <button class="workspace-link" type="button" data-tool="Certificates"><span class="nav-icon" aria-hidden="true">♙</span><span>Certificates</span></button>
+          <button class="workspace-link" type="button" data-tool="Digital Card"><span class="nav-icon" aria-hidden="true">▣</span><span>Digital Card</span></button>
+          <button class="workspace-link" type="button" data-tool="RuleBot AI"><span class="nav-icon" aria-hidden="true">♧</span><span>RuleBot AI</span><span class="nav-tag">AI</span></button>
+          <button class="workspace-link" type="button" data-tool="Student Guide"><span class="nav-icon" aria-hidden="true">♧</span><span>Student Guide</span></button>
+          <button class="workspace-link" type="button" data-tool="Official Communication"><span class="nav-icon" aria-hidden="true">♧</span><span>Official Communication</span></button>
+          <button class="workspace-link" type="button" data-tool="Notifications"><span class="nav-icon" aria-hidden="true">♧</span><span>Notifications</span></button>
+          <button class="workspace-link" type="button" data-tool="Help &amp; Support"><span class="nav-icon" aria-hidden="true">♧</span><span>Help &amp; Support</span></button>
+          <button class="workspace-link" type="button" data-tool="Profile"><span class="nav-icon" aria-hidden="true">◎</span><span>Profile</span></button>
+        </nav>
+
+        <div class="sidebar-account">
+          <div class="sidebar-section-label">ACCOUNT</div>
+          <div class="student-identity">
+            <span class="student-avatar" aria-hidden="true">SS</span>
+            <span class="student-identity-copy"><strong>Sanskar Solapure</strong><small>STUDENT</small></span>
+          </div>
+          <button class="logout-button" type="button" data-action="logout">LOGOUT</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-main">
+        <header class="dashboard-header">
+          <button class="sidebar-toggle" type="button" aria-label="Open workspace menu" aria-expanded="false" aria-controls="dashboard-sidebar"><span></span><span></span></button>
+          <div class="dashboard-breadcrumb">
+            <span class="mono">CAMPUSCODE <i>/</i> STUDENT</span>
+            <strong id="header-page-title">EVENTS</strong>
+          </div>
+          <div class="header-tools">
+            <button class="notification-button" type="button" aria-label="Notifications, 2 unread" data-action="notifications"><span aria-hidden="true">♧</span><i>2</i></button>
+            <button class="refresh-button mono" type="button" data-action="refresh"><span aria-hidden="true">↻</span> REFRESH</button>
+            <div class="header-student">
+              <span class="student-avatar" aria-hidden="true">SS</span>
+              <span>Sanskar Solapure</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="dashboard-content">
+          <section class="dashboard-view events-view" id="events-view" aria-labelledby="events-title">
+            <div class="dashboard-page-heading">
+              <div>
+                <p class="dashboard-eyebrow mono">DISCOVER / BACKEND DATA</p>
+                <h1 id="events-title">EVENTS.</h1>
+                <p class="dashboard-description">Explore CampusCode events — hackathons, quizzes, workshops — and join the ones you want.</p>
+              </div>
+              <div class="live-count"><strong id="events-count">03</strong><span class="mono">LIVE DATA</span></div>
+            </div>
+
+            <div class="event-filter-bar">
+              <div class="event-filters" role="group" aria-label="Filter events">
+                <button class="event-filter is-selected" type="button" data-filter="all" aria-pressed="true">All events</button>
+                <button class="event-filter" type="button" data-filter="hackathons" aria-pressed="false">Hackathons</button>
+                <button class="event-filter" type="button" data-filter="quizzes" aria-pressed="false">Quizzes</button>
+              </div>
+              <span class="filter-result mono" id="filter-result">03 EVENTS</span>
+            </div>
+
+            <div class="event-grid" id="event-grid" aria-live="polite"></div>
+          </section>
+
+          <section class="dashboard-view my-events-view" id="my-events-view" aria-labelledby="my-events-title" hidden>
+            <div class="dashboard-page-heading">
+              <div>
+                <p class="dashboard-eyebrow mono">MY ACTIVITY / BACKEND DATA</p>
+                <h1 id="my-events-title">MY EVENTS.</h1>
+                <p class="dashboard-description">Every event you joined, in one place. Open one to see its rounds, team, results and certificates.</p>
+              </div>
+              <div class="live-count"><strong id="my-events-count">01</strong><span class="mono">LIVE DATA</span></div>
+            </div>
+            <div class="my-event-grid" id="my-event-grid"></div>
+          </section>
+
+          <div class="dashboard-toast mono" id="dashboard-toast" role="status" aria-live="polite"></div>
+        </main>
+      </div>
+    </div>
+
+    <dialog class="dashboard-dialog" id="dashboard-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-accent"></div>
+      <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <p class="dashboard-eyebrow mono">CAMPUSCODE / EVENT INFO</p>
+      <h2 id="dialog-title">EVENT DETAILS</h2>
+      <div class="dialog-body" id="dialog-body"></div>
+      <button class="dialog-confirm mono" type="button">GOT IT <span aria-hidden="true">↗</span></button>
+    </dialog>
+  </body>
+</html>
